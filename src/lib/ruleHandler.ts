@@ -1,38 +1,36 @@
 type VerificationFunction = (value: string) => boolean;
 
-export async function GetRules(fieldName:string): Promise<Rule[]> {
+export async function GetRules(fieldName: string): Promise<Rule[]> {
     // TODO: Get from server
-    let rules =  {
+    let rules = {
         email: [
             {
-                isValid: '\w+@\w+\.\w+',
+                regexp: '\\w+@\\w+\\.\\w+',
                 message: "Must be a valid email"
             },
         ],
         password: [
             { // TODO: mixed case check?
-                isValid: '.*[A-Z].*',
+                regexp: '.*[A-Z].*',
                 message: 'Must contain an uppercase letter '
             },
             {
-                isValid: '.*\d.*',
+                regexp: '.*\\d.*',
                 message: 'Must contain a digit'
             },
             {
-                isValid: '.*\W.*',
+                regexp: '\\W+',
                 message: 'Must contain a special character'
             },
             {
-                isValid: '^.{4,}$',
+                regexp: '^.{4,}$',
                 message: 'Must be longer than 4 characters'
             }
         ]
     }
     let fieldRules = rules[fieldName]
-    fieldRules.forEach(rule => {
-        rule.isValid = (new RegExp(rule.isValid)).test
-    });
-    return fieldRules
+    fieldRules.forEach(rule => rule.isValid = (value: string) => (new RegExp(rule.regexp)).test(value));
+    return Promise.resolve(fieldRules)
 }
 
 export type Rule = {
@@ -44,7 +42,8 @@ export const rules = {
     length: class implements Rule {
         message: string
         isValid: VerificationFunction
-        constructor (length: number) {
+
+        constructor(length: number) {
             this.message = `must be longer than ${length} characters`
             this.isValid = (password) => password.length > length
         }

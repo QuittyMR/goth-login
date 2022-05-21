@@ -1,4 +1,4 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 specifiers:
   '@sveltejs/vite-plugin-svelte': ^1.0.0-next.30
@@ -19,8 +19,8 @@ devDependencies:
   autoprefixer: 10.4.5_postcss@8.4.13
   postcss: 8.4.13
   svelte: 3.47.0
-  svelte-check: 2.7.0_postcss@8.4.13+svelte@3.47.0
-  svelte-preprocess: 4.10.6_49c9478e9dbda36d24f3e0647b6ec733
+  svelte-check: 2.7.0_4jtua4syoih22gjrmahnwfwe4q
+  svelte-preprocess: 4.10.6_jheupdu5xwrw2jht4bshw3whgm
   tailwindcss: 3.0.24
   tslib: 2.4.0
   typescript: 4.7.0-dev.20220501
@@ -908,7 +908,7 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /svelte-check/2.7.0_postcss@8.4.13+svelte@3.47.0:
+  /svelte-check/2.7.0_4jtua4syoih22gjrmahnwfwe4q:
     resolution: {integrity: sha512-GrvG24j0+i8AOm0k0KyJ6Dqc+TAR2yzB7rtS4nljHStunVxCTr/1KYlv4EsOeoqtHLzeWMOd5D2O6nDdP/yw4A==}
     hasBin: true
     peerDependencies:
@@ -921,7 +921,7 @@ packages:
       sade: 1.8.1
       source-map: 0.7.3
       svelte: 3.47.0
-      svelte-preprocess: 4.10.6_23d504d69d103cc203cc285f10fe35c5
+      svelte-preprocess: 4.10.6_epkqjvu5ca6mea6mfbprb7rvyu
       typescript: 4.6.4
     transitivePeerDependencies:
       - '@babel/core'
@@ -945,7 +945,7 @@ packages:
       svelte: 3.47.0
     dev: true
 
-  /svelte-preprocess/4.10.6_23d504d69d103cc203cc285f10fe35c5:
+  /svelte-preprocess/4.10.6_epkqjvu5ca6mea6mfbprb7rvyu:
     resolution: {integrity: sha512-I2SV1w/AveMvgIQlUF/ZOO3PYVnhxfcpNyGt8pxpUVhPfyfL/CZBkkw/KPfuFix5FJ9TnnNYMhACK3DtSaYVVQ==}
     engines: {node: '>= 9.11.2'}
     requiresBuild: true
@@ -997,7 +997,7 @@ packages:
       typescript: 4.6.4
     dev: true
 
-  /svelte-preprocess/4.10.6_49c9478e9dbda36d24f3e0647b6ec733:
+  /svelte-preprocess/4.10.6_jheupdu5xwrw2jht4bshw3whgm:
     resolution: {integrity: sha512-I2SV1w/AveMvgIQlUF/ZOO3PYVnhxfcpNyGt8pxpUVhPfyfL/CZBkkw/KPfuFix5FJ9TnnNYMhACK3DtSaYVVQ==}
     engines: {node: '>= 9.11.2'}
     requiresBuild: true

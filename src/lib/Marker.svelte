@@ -3,9 +3,8 @@
 <script lang="ts">
     import { draw } from 'svelte/transition';
     import { quintInOut as quintIn } from 'svelte/easing';
-    import type { Rule } from './ruleHandler'
 
-    export let validator: Rule;
+    export let status: boolean = undefined;
     export let positiveColor = 'darkgreen';
     export let negativeColor = 'crimson';
 
@@ -32,5 +31,7 @@
             <path d={o} transition:draw={{ duration: 300, easing: quintIn }} />
         {/if}
     </svg>
-    <div class="inline self-center text-text transition-all duration-1000">{message}</div>
+    <div class="inline self-center text-text transition-all duration-1000">
+        <slot />
+    </div>
 </div>

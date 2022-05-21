@@ -23,6 +23,7 @@
 
 <ul>
     {#each activeRules as rule}
+        {rule}
         <li><Marker status={password ? rule.isValid(password) : undefined} message={rule.message} /></li>
     {/each}
 </ul>
