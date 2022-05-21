@@ -8,6 +8,7 @@
     // Startup options
     let isRegisterMode = false;
     let isPasswordShown = false;
+    let isLoginEnabled = false;
 
     let passwordField: HTMLInputElement;
     let email: string;
@@ -54,7 +55,7 @@
                     <div class="block w-full">
                         {#if isRegisterMode}
                             <div transition:fly|local={{ duration: 1000, x: 40 }} class="absolute min-w-min">
-                                <Validator ruleSet="email" value={email}/>
+                                <Validator ruleSet="email" value={email} on:email={(ev)=>isLoginEnabled}/>
                                 <Validator ruleSet="password" value={password}/>
                             </div>
                         {:else}
