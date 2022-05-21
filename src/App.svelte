@@ -2,7 +2,7 @@
     import {fly} from 'svelte/transition';
     import visibilityIcon from './assets/icons/visibility.svg';
     import visibilityOffIcon from './assets/icons/visibilityOff.svg';
-    import BackIcon from './assets/icons/back.svelte';
+    import BackIcon from './lib/Back.svelte';
     import Validator from "./lib/Validator.svelte";
 
     // Startup options
