@@ -1,8 +1,8 @@
-<svelte:options immutable/>
+<svelte:options immutable />
 
 <script lang="ts">
-    import {draw} from 'svelte/transition';
-    import {quintInOut as quintIn} from 'svelte/easing';
+    import { draw } from 'svelte/transition';
+    import { quintInOut as quintIn } from 'svelte/easing';
 
     export let status: boolean = undefined;
     export let positiveColor = 'darkgreen';
@@ -17,21 +17,21 @@
             return status ? positiveColor : negativeColor;
         } else return '';
     }
-
+    
     $: color = getColor(status);
 </script>
 
 <div class="block">
     <svg viewBox="0 0 12 12" class="w-8 inline">
         {#if status === true}
-            <path fill="none" stroke={positiveColor} d={v} transition:draw={{ duration: 500, easing: quintIn }}/>
+            <path fill="none" stroke={positiveColor} d={v} transition:draw={{ duration: 500, easing: quintIn }} />
         {:else if status === false}
-            <path stroke={negativeColor} d={x} transition:draw={{ duration: 500, easing: quintIn }}/>
+            <path stroke={negativeColor} d={x} transition:draw={{ duration: 500, easing: quintIn }} />
         {:else}
-            <path d={o} transition:draw={{ duration: 300, easing: quintIn }}/>
+            <path d={o} transition:draw={{ duration: 300, easing: quintIn }} />
         {/if}
     </svg>
     <div class="inline self-center text-text transition-all duration-1000">
-        <slot/>
+        <slot />
     </div>
 </div>

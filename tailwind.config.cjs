@@ -1,7 +1,7 @@
 const userTheme = {
     primary: [80, 120, 80],
     secondary: [100, 140, 120],
-    text: [200, 200, 200]
+    text: [200,200,200]
 }
 module.exports = {
     content: [
@@ -22,7 +22,7 @@ module.exports = {
 }
 
 function from(cssFunction, colorTriplet) {
-    return ({opacityValue}) => {
+    return ({ opacityValue }) => {
         if (opacityValue === undefined) {
             return `${cssFunction}(${colorTriplet.join(' ')})`
         }

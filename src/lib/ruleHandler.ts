@@ -34,9 +34,8 @@ export async function GetRules(fieldName: string): Promise<Rule[]> {
 }
 
 export type Rule = {
-    message: string
-    isValid: VerificationFunction
-    status?: boolean
+    message: string;
+    isValid: VerificationFunction;
 }
 
 export const rules = {
