@@ -3,16 +3,21 @@
     import visibilityIcon from './assets/icons/visibility.svg';
     import visibilityOffIcon from './assets/icons/visibilityOff.svg';
     import BackIcon from './lib/Back.svelte';
-    import Validator from "./lib/Validator.svelte";
+    import ValidityIndicator from "./lib/ValidityIndicator.svelte";
+    import Validator from "./lib/validator";
 
     // Startup options
     let isRegisterMode = false;
     let isPasswordShown = false;
-    let isLoginEnabled = false;
 
     let passwordField: HTMLInputElement;
+
     let email: string;
     let password: string;
+    let emailValidator
+    let passwordValidator: Validator = new Validator("password")
+    $:passwordValidator.update(password)
+    // $:emailValidator.update(email)
 
     function changePasswordVisibility() {
         isPasswordShown = !isPasswordShown;
@@ -55,8 +60,8 @@
                     <div class="block w-full">
                         {#if isRegisterMode}
                             <div transition:fly|local={{ duration: 1000, x: 40 }} class="absolute min-w-min">
-                                <Validator ruleSet="email" value={email} on:email={(ev)=>isLoginEnabled}/>
-                                <Validator ruleSet="password" value={password}/>
+                                <ValidityIndicator ruleSet="email" bind:this={emailValidator}/>
+<!--                                <ValidityIndicator validator={passwordValidator}/>-->
                             </div>
                         {:else}
                             <div transition:fly={{ duration: 1000, x: 40 }} class="absolute -my-1 h-8">
