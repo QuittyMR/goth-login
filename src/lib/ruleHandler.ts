@@ -36,32 +36,5 @@ export async function GetRules(fieldName: string): Promise<Rule[]> {
 export type Rule = {
     message: string;
     isValid: VerificationFunction;
-}
-
-export const rules = {
-    length: class implements Rule {
-        message: string
-        isValid: VerificationFunction
-
-        constructor(length: number) {
-            this.message = `must be longer than ${length} characters`
-            this.isValid = (password) => password.length > length
-        }
-    },
-    hasSpecial: class implements Rule {
-        message: string = 'must contain a special character'
-        isValid: VerificationFunction = (password) => /.*\W.*/.test(password)
-    },
-    hasNumeric: class implements Rule {
-        message: string = 'must contain a numeric character'
-        isValid: VerificationFunction = (password) => /.*\d.*/.test(password)
-    },
-    hasMixedCase: class implements Rule {
-        message: string = 'must contain an uppercase character'
-        isValid: VerificationFunction = (password) => /.*[A-Z].*/.test(password)
-    },
-    isValidEmail: class implements Rule {
-        message: string = 'must be a valid email'
-        isValid: VerificationFunction = (password) => /\w+@\w+\.\w+/.test(password)
-    },
+    status?: boolean;
 }

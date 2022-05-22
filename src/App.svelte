@@ -3,15 +3,19 @@
     import visibilityIcon from './assets/icons/visibility.svg';
     import visibilityOffIcon from './assets/icons/visibilityOff.svg';
     import BackIcon from './lib/Back.svelte';
-    import Validator from "./lib/Validator.svelte";
-    import {writable} from "svelte/store";
+    import ValidationChecker from "./lib/ValidationChecker.svelte";
+    import {ValidatingStore} from "./lib/validatingStore";
+    import Validator from "./lib/validationService";
 
     // Startup options
     let isRegisterMode = false;
     let isPasswordShown = false;
 
-    let email = writable<string>()
-    let password = writable<string>()
+    let emailValidator = new Validator('email')
+    let passwordValidator = new Validator('password')
+    let email = new ValidatingStore<string>(emailValidator)
+    let password = new ValidatingStore<string>(passwordValidator)
+    let isEmailValid = email.isValid
 
     let passwordField: HTMLInputElement;
     function changePasswordVisibility() {
@@ -58,8 +62,8 @@
                     <div class="block w-full">
                         {#if isRegisterMode}
                             <div transition:fly|local={{ duration: 1000, x: 40 }} class="absolute min-w-min">
-                                <Validator ruleSet="email" value={$email}/>
-                                <Validator ruleSet="password" value={$password}/>
+                                <ValidationChecker validatorService={emailValidator} value={$email}/>
+                                <ValidationChecker validatorService={passwordValidator} value={$password}/>
                             </div>
                         {:else}
                             <div transition:fly={{ duration: 1000, x: 40 }} class="absolute -my-1 h-8">
@@ -76,7 +80,8 @@
                             id="login-button"
                             class="col-span-3 grid grid-cols-1 transition-slow
                         {isRegisterMode ? 'translate-y-32 opacity-0' : ''}">
-                        <button
+                        <button disabled={$isEmailValid}
+                                on:click={() => alert("clicked")}
                                 class="text-contrast col-span-3 transition-fast rounded-3xl bg-primary p-3 font-bold ring-secondary hover:ring-4"
                         >Log in
                         </button>
