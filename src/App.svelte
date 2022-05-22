@@ -4,15 +4,16 @@
     import visibilityOffIcon from './assets/icons/visibilityOff.svg';
     import BackIcon from './lib/Back.svelte';
     import Validator from "./lib/Validator.svelte";
+    import {writable} from "svelte/store";
 
     // Startup options
     let isRegisterMode = false;
     let isPasswordShown = false;
 
-    let passwordField: HTMLInputElement;
-    let email: string;
-    let password: string;
+    let email = writable<string>()
+    let password = writable<string>()
 
+    let passwordField: HTMLInputElement;
     function changePasswordVisibility() {
         isPasswordShown = !isPasswordShown;
         passwordField.type = passwordField.type === 'text' ? 'password' : 'text';
@@ -35,14 +36,17 @@
                     <img src="/src/assets/logo.jpg" alt="logo"/>
                 </div>
                 <div id="inputs" class="space-y-4 block w-80 text-black">
-                    <input id="email" class="hover:ring-2 block w-80" placeholder="E-Mail" bind:value={email}/>
+                    <input id="email"
+                           class="hover:ring-2 block w-80"
+                           placeholder="E-Mail"
+                           bind:value={$email}/>
                     <div id="password" class="inline-table w-80">
                         <input
                                 class="hover:ring-2 inline w-80"
                                 bind:this={passwordField}
                                 placeholder="Password"
                                 type="password"
-                                bind:value={password}/>
+                                bind:value={$password}/>
                         <img
                                 src={passwordIcon}
                                 alt="show/hide password"
@@ -54,8 +58,8 @@
                     <div class="block w-full">
                         {#if isRegisterMode}
                             <div transition:fly|local={{ duration: 1000, x: 40 }} class="absolute min-w-min">
-                                <Validator ruleSet="email" value={email}/>
-                                <Validator ruleSet="password" value={password}/>
+                                <Validator ruleSet="email" value={$email}/>
+                                <Validator ruleSet="password" value={$password}/>
                             </div>
                         {:else}
                             <div transition:fly={{ duration: 1000, x: 40 }} class="absolute -my-1 h-8">
